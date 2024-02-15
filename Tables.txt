@@ -1,0 +1,27 @@
+-- Admins Table
+CREATE TABLE IF NOT EXISTS admins (
+    SLNo INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50),
+    password VARCHAR(255)
+);
+
+-- Consumers Table
+CREATE TABLE IF NOT EXISTS consumers (
+    SLNo INT AUTO_INCREMENT PRIMARY KEY,
+    Consumer_Name VARCHAR(100),
+    Consumer_ID VARCHAR(20) UNIQUE,
+    Mobile_Number BIGINT,
+    Email_ID VARCHAR(255) UNIQUE,
+    Permanent_Address VARCHAR(255),
+    Registration_Date DATE
+);
+
+-- Payments Table
+CREATE TABLE IF NOT EXISTS payments (
+    SLNo INT AUTO_INCREMENT PRIMARY KEY,
+    Consumer_ID VARCHAR(20),
+    Payment_Date DATE,
+    Payment_Status ENUM('Paid', 'Unpaid'),
+    Mobile_Number BIGINT,
+    FOREIGN KEY (Consumer_ID) REFERENCES consumers(Consumer_ID)
+);
